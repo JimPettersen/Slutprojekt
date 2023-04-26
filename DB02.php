@@ -19,9 +19,9 @@ if(isset($_POST["login"]))
     <center>
     <?php
        if (isset($_POST["submit"])) {
-        if(!empty($_POST["accounts"]) && !empty($_POST["account"]))
+        if(!empty($_POST["name"]) && !empty($_POST["password"]))
         {
-        $db->exec("INSERT into account values('" .$_POST["namn"]. "', '". $_POST["lösen"]. "');");
+        $db->exec("INSERT into account values('" .$_POST["name"]. "', '". $_POST["password"]. "');");
         } 
     } 
     ?>
