@@ -4,7 +4,7 @@ $db->exec("CREATE TABLE IF NOT EXISTS chat(chattext text, tid varchar);");
 
 if(isset($_POST["logout"]))
     {
-        setcookie('userid', "kaka", time() - (600));
+        setcookie("userid", "kaka", time() - (600),'/');
         header("Location: DB02.php");
     }
 
@@ -16,14 +16,14 @@ if(isset($_POST["logout"]))
     <center>
     <?php
         if (isset($_POST["postchat"])) 
-    {//kommer ifrån register.php
-        if(!empty($_POST["postchat"]))//kollar om någon av dom är tomma då genomförs det ej
+    {
+        if(!empty($_POST["postchat"]))
         {
         $date = date('Y-m-d H:i:s', time());
         $db->exec("INSERT into chat values('" .$_POST["chattext"]. "', '". $date. "');");
         } 
 
-        $allInputQuery = "SELECT * FROM chat;"; //selectar alla input fält i account
+        $allInputQuery = "SELECT * FROM chat;";
         $chatboard = $db->query($allInputQuery); 
         while($row = $chatboard->fetchArray(SQLITE3_ASSOC))
         {
