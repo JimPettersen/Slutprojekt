@@ -16,7 +16,7 @@ if(isset($_POST["submitlogin"]))
         {
             if($row['lösen'] == $_POST['loginPassword'])//jamför rowen på password
             {
-                setcookie("userid", "kaka", time() + (10),'/');
+                setcookie("userid", "kaka", time() + (600),'/');
                 header("Location: chat.php");//redirectad till chattboarden
                 echo "aaaaaa";
             }
