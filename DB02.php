@@ -14,7 +14,7 @@ if(isset($_POST["submitlogin"]))
     {
         if($row['namn'] == $_POST['loginName'])//jamför rowen på namn
         {
-            if($row['lösen'] == $_POST['loginPassword'])//jamför rowen på password
+            if($row['lösen'] == hash('sha3-512', $_POST['loginPassword']))//jamför rowen på password
             {
                 setcookie("userid", "kaka", time() + (600),'/');
                 header("Location: chat.php");//redirectad till chattboarden
@@ -38,7 +38,7 @@ if(isset($_POST["submitlogin"]))
        if (isset($_POST["submit"])) {//kommer ifrån register.php
         if(!empty($_POST["name"]) && !empty($_POST["password"]))//kollar om någon av dom är tomma då genomförs det ej
         {
-        $db->exec("INSERT into account values('" .$_POST["name"]. "', '". $_POST["password"]. "');");
+        $db->exec("INSERT into account values('" .$_POST["name"]. "', '".hash('sha3-512',$_POST["password"]). "');");
         } 
     } 
     ?>
